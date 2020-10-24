@@ -1,11 +1,7 @@
 var mongoose = require('mongoose')
 
 const PropertySchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        unique: true
-    },
-    infoURLs: 
+    infoURLs:
         [
             {
                 type: mongoose.Schema.Types.ObjectId,
@@ -30,62 +26,33 @@ const PropertySchema = new mongoose.Schema({
     },
     openingTimes: {
         mon: {
-            openTime: {
-                type: Date
-            },
-            closeTime: {
-                type: Date
-            }
+            type: TimeRanges
         },
         tue: {
-            openTime: {
-                type: Date
-            },
-            closeTime: {
-                type: Date
-            }
+            type: TimeRanges
         },
         wed: {
-            openTime: {
-                type: Date
-            },
-            closeTime: {
-                type: Date
-            }
+            type: TimeRanges
         },
         thu: {
-            openTime: {
-                type: Date
-            },
-            closeTime: {
-                type: Date
-            }
+            type: TimeRanges
         },
         fri: {
-            openTime: {
-                type: Date
-            },
-            closeTime: {
-                type: Date
-            }
+            type: TimeRanges
         },
         sat: {
-            openTime: {
-                type: Date
-            },
-            closeTime: {
-                type: Date
-            }
+            type: TimeRanges
         },
         sun: {
-            openTime: {
-                type: Date
-            },
-            closeTime: {
-                type: Date
-            }
+            type: TimeRanges
         }
-    }
+    },
+    events: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'events'
+        }
+    ]
 });
 
 module.exports = mongoose.model('properties', PropertySchema);
