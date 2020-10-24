@@ -8,4 +8,4 @@ Start Backend server: npm start
 
 Docker way:
 create a *.env file with DB_URI=<connectionString>
-docker run -p 9000:9000 --env-file="env_file_dir_and_name" backend:latest
+docker run -p 9000:9000 --env-file="C:\Users\Spielplatz\Documents\GitHub\hackathon_united\db.env" --name="backend" backend:latest
