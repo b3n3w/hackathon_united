@@ -1,10 +1,7 @@
 <template>
   <f7-page name="scan">
     <f7-navbar title="QR-Code scannen" back-link="Back"></f7-navbar>
-
-    <f7-block strong>
-      <video autoplay ref="video"></video>
-    </f7-block>
+    <video id="video" autoplay ref="video"></video>
   </f7-page>
 </template>
 
@@ -69,3 +66,11 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scoped>
+#video{
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}
+</style>
