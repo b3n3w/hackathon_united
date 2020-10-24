@@ -14,7 +14,7 @@ const InitiateMongoServer = async () => {
       useCreateIndex : true
     });
 
-    console.log("Connected to MongoDB Cloud Atlas - Cluster0 : united_skillserver");
+    console.log("Connected to MongoDB");
   } catch (e) {
     console.log(e);
     throw e;
