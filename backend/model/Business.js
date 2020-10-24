@@ -47,12 +47,15 @@ const PropertySchema = new mongoose.Schema({
             type: TimeRanges
         }
     },
-    events: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'events'
+    visits:
+        [{
+            visit: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'visits',
+                index: true
+            }
         }
-    ]
+        ]
 });
 
 module.exports = mongoose.model('properties', PropertySchema);

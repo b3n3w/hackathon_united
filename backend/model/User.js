@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
+    
     username: {
         type: String,
         unique: true
@@ -32,7 +33,7 @@ const UserSchema = new mongoose.Schema({
             ref: 'properties'
         }
     ],
-    matches: [
+    connectedMatches: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users'
