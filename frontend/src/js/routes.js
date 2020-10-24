@@ -10,6 +10,7 @@ import NotFoundPage from '../pages/404.vue';
 
 import HostPage from '../pages/host.vue';
 import ScanPage from '../pages/scan.vue';
+import ProfilePage from '../pages/profile.vue';
 
 var routes = [
   {
@@ -31,6 +32,10 @@ var routes = [
   {
     path: '/scan/',
     component: ScanPage
+  },
+  {
+    path: '/profile/:id',
+    component: ProfilePage
   },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
