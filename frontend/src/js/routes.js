@@ -8,6 +8,9 @@ import DynamicRoutePage from '../pages/dynamic-route.vue';
 import RequestAndLoad from '../pages/request-and-load.vue';
 import NotFoundPage from '../pages/404.vue';
 
+import HostPage from '../pages/host.vue';
+import ScanPage from '../pages/scan.vue';
+
 var routes = [
   {
     path: '/',
@@ -21,8 +24,14 @@ var routes = [
     path: '/form/',
     component: FormPage,
   },
-
-
+  {
+    path: '/host/:id',
+    component: HostPage
+  },
+  {
+    path: '/scan/',
+    component: ScanPage
+  },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: DynamicRoutePage,

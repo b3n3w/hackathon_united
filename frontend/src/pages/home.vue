@@ -24,6 +24,8 @@
     <f7-list>
       <f7-list-item link="/about/" title="About"></f7-list-item>
       <f7-list-item link="/form/" title="Form"></f7-list-item>
+      <f7-list-item link="/host/123" title="Host Testseite"></f7-list-item>
+      <f7-list-item link="/scan/" title="QR-Code Scanner"></f7-list-item>
     </f7-list>
 
     <f7-block-title>Modals</f7-block-title>
