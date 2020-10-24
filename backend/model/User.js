@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    qrCode: {
+        type: String,
+        reqired: true
+    },
     properties: [
         {
             type: mongoose.Schema.Types.ObjectId,

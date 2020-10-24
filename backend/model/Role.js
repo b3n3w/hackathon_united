@@ -1,10 +1,10 @@
 var mongoose = require('mongoose')
 
 const RoleSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        unique: true,
-    }
+    description: {
+        enum: ["OPERATOR", "USER", "GUEST", "ADMIN"],
+        required : true
+    },
 })
 
 module.exports = mongoose.model('rolls', RoleSchema);
