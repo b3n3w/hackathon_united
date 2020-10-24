@@ -1,0 +1,26 @@
+{
+  "cwd": "/Users/pascalrosch/hackathon_united/hackathon_united/frontend",
+  "type": [
+    "pwa"
+  ],
+  "name": "handshake2.0",
+  "framework": "vue",
+  "template": "single-view",
+  "bundler": "webpack",
+  "cssPreProcessor": "less",
+  "theming": {
+    "customColor": true,
+    "color": "#ffb443",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false,
+  "webpack": {
+    "developmentSourceMap": true,
+    "productionSourceMap": true,
+    "hashAssets": false,
+    "preserveAssetsPaths": false,
+    "inlineAssets": true
+  }
+}
