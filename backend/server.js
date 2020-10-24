@@ -1,45 +1,21 @@
 
 const express = require('express')
-const User = require('./model/User.js');
+var routes = require('./routes/router');
 const app = express()
 const port = 9000
 const InitiateMongoServer = require("./db");
 /// Initiate Mongo DB Server Connection
 InitiateMongoServer() // Initiate Mongo DB Server Connection
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+//app.set('port', process.env.PORT || 9000);
 
-app.get('/api/user/:id', (req, res) => {
-    User.findOne({
-            '_id': req.params.id
-        }).select().exec().then(user => {
-            if (!user) {
-                res.status(200).json({
-                    success: true,
-                    message: 'Sorry, no user with this id found.',
-                    user: {}
-                });
-            } else {
-                res.status(200).json({
-                    success: true,
-                    user: user
-                });
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                success: false,
-                message: 'Error while fetching the user from the database.'
-            });
-        });
-});
+app.use('/', routes);
+
 
 
 // catch 404 and forward to error handler

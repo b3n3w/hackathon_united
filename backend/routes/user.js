@@ -1,12 +1,11 @@
 
 const path = require('path');
 const User = require('../model/User');
-const jwt = require("jsonwebtoken");
 const { timeStamp } = require('console');
 
-exports.getUserName('/api/user/:username'){
-
-}
+// exports.getUserName('/api/user/:username'){
+//
+// }
 
 
 exports.getUserID = async function (req, res) {
@@ -16,7 +15,7 @@ exports.getUserID = async function (req, res) {
 }
 
 
-
+// get user information by user id
 exports.getUserParams = async function (req, res) {
 
     User.findOne({
@@ -42,7 +41,4 @@ exports.getUserParams = async function (req, res) {
                 message: 'Error while fetching the user from the database.'
             });
         });
-});
-
-
-
+};
