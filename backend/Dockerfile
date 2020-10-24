@@ -1,7 +1,6 @@
+# ---- Base ----
 FROM node:latest as base
-
 WORKDIR /opt/handshake2/backend
-
 COPY package*.json ./
 
 

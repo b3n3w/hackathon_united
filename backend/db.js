@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { config } = require('dotenv');
 
 
-config(); //read env
+config() //read env
 const uri = process.env.DB_URI;
 
 
