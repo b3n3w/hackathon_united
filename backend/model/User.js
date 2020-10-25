@@ -1,4 +1,6 @@
 var mongoose = require('mongoose')
+const dummy = require('mongoose-dummy');
+const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
 
 const UserSchema = new mongoose.Schema({
 
@@ -30,10 +32,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         reqired: true
     },
-    properties: [
+    business: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'properties'
+            ref: 'businesses'
         }
     ],
     connectedMatches: [
@@ -50,4 +52,16 @@ const UserSchema = new mongoose.Schema({
     ]
 });
 
-module.exports = mongoose.model('users', UserSchema);
+
+
+
+
+
+let users = mongoose.model('users', UserSchema);
+let randomObject = dummy(users, {
+    ignore: ignoredFields,
+    returnDate: true
+})
+
+console.log(randomObject);
+module.exports = users

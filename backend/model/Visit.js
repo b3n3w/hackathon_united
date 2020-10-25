@@ -1,4 +1,6 @@
 var mongoose = require('mongoose')
+const dummy = require('mongoose-dummy');
+const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
 
 const VisitSchema = new mongoose.Schema({
     matchID: {
@@ -15,4 +17,12 @@ const VisitSchema = new mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model('visits', UserSchema);
+
+let visits = mongoose.model('visits', VisitSchema);
+let randomObject = dummy(visits, {
+    ignore: ignoredFields,
+    returnDate: true
+})
+
+console.log(randomObject);
+module.exports = visits
