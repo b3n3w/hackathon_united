@@ -8,7 +8,8 @@ const VisitSchema = new mongoose.Schema({
         ref: 'users'
     },
     timeStamp: {
-        type: Date.timeStamp
+        type: Date,
+        default: Date.now
     },
     createdAt: {
         type: Date,
