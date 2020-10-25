@@ -54,8 +54,7 @@ const PropertySchema = new mongoose.Schema({
                 ref: 'visits',
                 index: true
             }
-        }
-        ]
+        }]
 });
 
-module.exports = mongoose.model('properties', PropertySchema);
+module.exports = mongoose.model('businesses', PropertySchema);

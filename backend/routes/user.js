@@ -3,9 +3,6 @@ const path = require('path');
 const User = require('../model/User');
 const { timeStamp } = require('console');
 
-// exports.getUserName('/api/user/:username'){
-//
-// }
 
 
 exports.getUserID = async function (req, res) {
