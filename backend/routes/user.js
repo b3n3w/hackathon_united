@@ -1,7 +1,7 @@
 
 const path = require('path');
 const User = require('../model/User');
-const { timeStamp } = require('console');
+
 
 
 
@@ -11,6 +11,22 @@ exports.getUserID = async function (req, res) {
 
 }
 
+exports.createGuestUser = async function (req, res) {
+
+    if (req.params.phone != null && User.findOne({ 'phone': req.params.phone })) {
+        //Guest User mit dieser Rufnummer gefunden -> Möchte User Registrierung abschließen
+    } else {
+        const currUser = User.create({
+            firstname: req.params.firstname,
+            lastname: req.params.lastname,
+            phone: req.params.phone,
+            role: "GUEST",
+            qrCode: "Testblas"
+        }
+        )
+    }
+    return currUser._id;
+}
 
 // get user information by user id
 exports.getUserParams = async function (req, res) {

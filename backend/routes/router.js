@@ -23,10 +23,19 @@ router.get('/api/visit/:id', (req, res) => {
 });
 
 
+router.post('/api/business/create', (req, res) => {
+    businessRouter.createBusiness(req, res);
+});
+
+router.post('/api/business/update', (req, res) => {
+    businessRouter.updateBusiness(req, res);
+});
+
 //Post after Handshake between User and Business
 router.post('/api/business/visit', (req, res) => {
-    visitRouter.visitBusiness(req, res);
+    businessRouter.visitBusiness(req, res);
 });
+
 
 
 module.exports = router;
