@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-const dummy = require('mongoose-dummy');
+//const dummy = require('mongoose-dummy');
 const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
 
 const BusinessSchema = new mongoose.Schema({
@@ -45,11 +45,11 @@ const BusinessSchema = new mongoose.Schema({
 });
 
 let businesses = mongoose.model('businesses', BusinessSchema);
-let randomObject = dummy(businesses, {
-    ignore: ignoredFields,
-    autoDetect: true,
-    returnDate: false
-})
-
-console.log(randomObject);
+// let randomObject = dummy(businesses, {
+//     ignore: ignoredFields,
+//     autoDetect: true,
+//     returnDate: false
+// })
+//
+// console.log(randomObject);
 module.exports = businesses
