@@ -9,9 +9,6 @@ var bodyParser = require('body-parser')
 // create application/json parser
 
 
-var jsonParser = bodyParser.json()
-
-router.use(express.json())
 
 router.get('/api/user/:id', (req, res) => {
     userRouter.getUserParams(req, res);

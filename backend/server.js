@@ -8,7 +8,7 @@ const redis = require('redis');
 let RedisStore = require('connect-redis')(session);
 const client = redis.createClient(process.env.REDIS_URL);
 
-redisClient.on('error', (err) => {
+client.on('error', (err) => {
     console.log('Redis error: ', err);
   });
 
@@ -39,6 +39,8 @@ app.use(session({
     resave: false,
     saveUninitialized : false,
 }));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
 app.use('/', routes);
 
 

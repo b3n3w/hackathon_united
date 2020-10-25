@@ -27,6 +27,7 @@ exports.registerUser = async function (req, res) {
                 msg: "User Already Exists"
             });
         }
+        
         user = new User({
             username: req.body.username,
             password: hashedPassword,
