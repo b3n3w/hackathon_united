@@ -40,12 +40,47 @@ export default {
       const self = this;
       const app = self.$f7;
       const router = self.$f7router;
+      this.sendToBackend(self.username, self.password);
       app.dialog.alert(
         `Username: ${self.username}<br>Password: ${self.password}`,
         () => {
           router.back();
         }
       );
+    },
+    sendToBackend(username, password) {
+      const http = require("http");
+
+      const data = JSON.stringify({
+        username: self.username,
+        password: self.password,
+      });
+
+      const options = {
+        hostname: "localhost",
+        port: 9000,
+        path: "/api/user/register",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": data.length,
+        },
+      };
+
+      const req = http.request(options, (res) => {
+        console.log("statusCode: " + res.statusCode);
+
+        res.on("data", (d) => {
+          process.stdout.write(d);
+        });
+      });
+
+      req.on("error", (error) => {
+        console.error(error);
+      });
+
+      req.write(data);
+      req.end();
     },
   },
 };
