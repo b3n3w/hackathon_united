@@ -10,7 +10,7 @@ import ScanPage from '../pages/scan.vue';
 import ProfilePage from '../pages/profile.vue';
 
 import StartBusinessPage from '../pages/start-business.vue';
-import StartPartyPage from '../pages/start-party.vue';
+import StartPrivatePage from '../pages/start-private.vue';
 
 var routes = [
   {
@@ -34,8 +34,8 @@ var routes = [
     component: StartBusinessPage
   },
   {
-    path: '/start-party/',
-    component: StartPartyPage
+    path: '/start-private/',
+    component: StartPrivatePage
   },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',

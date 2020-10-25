@@ -1,6 +1,6 @@
 <template>
-  <f7-page name="start-party">
-    <f7-navbar title="Party starten" back-link="Back"></f7-navbar>
+  <f7-page name="start-private">
+    <f7-navbar title="Private Veranstaltung starten" back-link="Back"></f7-navbar>
 
     <f7-block-title medium>Beschreibung</f7-block-title>
     <f7-block strong inset>
@@ -17,14 +17,16 @@
 
     <f7-block-title medium>Standard-Zeitraum</f7-block-title>
 
-    <f7-block-title>Minimaler Zeitraum in Stunden</f7-block-title>
+    <f7-block-title class="display-flex justify-content-space-between"
+      >Minimaler Zeitraum <span>{{ Math.round(min * 10) / 10 }} Stunden</span></f7-block-title
+    >
     <f7-list simple-list>
       <f7-list-item>
         <f7-list-item-cell class="width-auto flex-shrink-0">
           <f7-icon
-            ios="f7:sun_min"
-            aurora="f7:sun_min"
-            md="material:brightness_low"
+            ios="f7:arrow_down_to_line"
+            aurora="f7:arrow_down_to_line"
+            md="material:keyboard_arrow_down"
           ></f7-icon>
         </f7-list-item-cell>
         <f7-list-item-cell class="flex-shrink-3">
@@ -34,28 +36,24 @@
             :step="0.1"
             :value="min"
             :label="true"
+            :format-label="formatLabel"
             @range:change="onMinChange"
             color="orange"
           ></f7-range>
         </f7-list-item-cell>
-        <f7-list-item-cell class="width-auto flex-shrink-0">
-          <f7-icon
-            ios="f7:sun_max_fill"
-            aurora="f7:sun_max_fill"
-            md="material:brightness_high"
-          ></f7-icon>
-        </f7-list-item-cell>
       </f7-list-item>
     </f7-list>
 
-    <f7-block-title>Maximaler Zeitraum in Stunden</f7-block-title>
+    <f7-block-title class="display-flex justify-content-space-between"
+      >Maximaler Zeitraum <span>{{ Math.round(max * 10) / 10 }} Stunden</span></f7-block-title
+    >
     <f7-list simple-list>
       <f7-list-item>
         <f7-list-item-cell class="width-auto flex-shrink-0">
           <f7-icon
-            ios="f7:sun_min"
-            aurora="f7:sun_min"
-            md="material:brightness_low"
+            ios="f7:arrow_up_to_line"
+            aurora="f7:arrow_up_to_line"
+            md="material:keyboard_arrow_up"
           ></f7-icon>
         </f7-list-item-cell>
         <f7-list-item-cell class="flex-shrink-3">
@@ -65,16 +63,10 @@
             :step="0.1"
             :value="max"
             :label="true"
+            :format-label="formatLabel"
             @range:change="onMaxChange"
             color="orange"
           ></f7-range>
-        </f7-list-item-cell>
-        <f7-list-item-cell class="width-auto flex-shrink-0">
-          <f7-icon
-            ios="f7:sun_max_fill"
-            aurora="f7:sun_max_fill"
-            md="material:brightness_high"
-          ></f7-icon>
         </f7-list-item-cell>
       </f7-list-item>
     </f7-list>
@@ -104,6 +96,9 @@ export default {
     },
     onMaxChange(value) {
       this.max = value;
+    },
+    formatLabel(value) {
+      return Math.round(value * 10) / 10;
     },
     submit() {
       const description = this.description;

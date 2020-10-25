@@ -16,11 +16,9 @@
     <f7-list>
       <f7-list-item link="/host/123" title="Host Testseite"></f7-list-item>
       <f7-list-item link="/scan/" title="QR-Code scannen"></f7-list-item>
-      <f7-list-item link="/profile/xxx" title="Profile"></f7-list-item>
     </f7-list>
 
-
-    <f7-block-title>Eigener QR-Code</f7-block-title>
+    <f7-block-title>Mein QR-Code</f7-block-title>
     <f7-block strong inset>
       <QRCanvas :options="options" @updated="onUpdated" />
     </f7-block>

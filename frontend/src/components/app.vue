@@ -4,29 +4,45 @@
     <f7-panel left cover theme-dark>
       <f7-view>
         <f7-page>
-          <f7-navbar title="Left Panel"></f7-navbar>
+          <f7-navbar title="Menü"></f7-navbar>
           <f7-block>
             <f7-list>
-              <f7-list-item link="/scan/" title="QR-Code scannen" view=".view-main" panel-close></f7-list-item>
-              <f7-list-item link="/start-business/" title="Business starten" view=".view-main" panel-close></f7-list-item>
-              <f7-list-item link="/start-party/" title="Party starten" view=".view-main" panel-close></f7-list-item>
-              <f7-list-item link="/profile/xxx" title="Mein Profil" view=".view-main" panel-close></f7-list-item>
-              <f7-list-item link="#my-login-screen" login-screen-open="#my-login-screen" title="Einloggen"></f7-list-item>
-              <f7-list-item link="#my-register-screen" login-screen-open="#my-register-screen" title="Registrieren"></f7-list-item>
-
-
+              <f7-list-item
+                link="/scan/"
+                title="QR-Code scannen"
+                view=".view-main"
+                panel-close
+              ></f7-list-item>
+              <f7-list-item
+                link="/start-business/"
+                title="Business starten"
+                view=".view-main"
+                panel-close
+              ></f7-list-item>
+              <f7-list-item
+                link="/start-private/"
+                title="Private Veranstaltung starten"
+                view=".view-main"
+                panel-close
+              ></f7-list-item>
+              <f7-list-item
+                link="/profile/xxx"
+                title="Mein Profil"
+                view=".view-main"
+                panel-close
+              ></f7-list-item>
+              <f7-list-item
+                link="#my-login-screen"
+                login-screen-open="#my-login-screen"
+                title="Einloggen"
+              ></f7-list-item>
+              <f7-list-item
+                link="#my-register-screen"
+                login-screen-open="#my-register-screen"
+                title="Registrieren"
+              ></f7-list-item>
             </f7-list>
           </f7-block>
-        </f7-page>
-      </f7-view>
-    </f7-panel>
-
-    <!-- Right panel with reveal effect-->
-    <f7-panel right reveal theme-dark>
-      <f7-view>
-        <f7-page>
-          <f7-navbar title="Right Panel"></f7-navbar>
-          <f7-block>Right panel content goes here</f7-block>
         </f7-page>
       </f7-view>
     </f7-panel>
@@ -71,19 +87,18 @@
             ></f7-list-input>
           </f7-list>
           <f7-list>
-            <f7-list-button
-              title="Einloggen"
-              @click="alertLoginData"
-            ></f7-list-button>
+            <f7-button @click="alertLoginData" raised fill>
+              Einloggen
+            </f7-button>
             <f7-block-footer>
-              Das ist ein Beispieltext!<br />Klicke auf "Einloggen" um den Screen zu schließen.
+              Das ist ein Beispieltext!<br />Klicke auf "Einloggen" um den
+              Screen zu schließen.
             </f7-block-footer>
           </f7-list>
         </f7-page>
       </f7-view>
     </f7-login-screen>
 
-    
     <f7-login-screen id="my-register-screen">
       <f7-view>
         <f7-page login-screen>
@@ -97,6 +112,20 @@
               @input="username = $event.target.value"
             ></f7-list-input>
             <f7-list-input
+              type="text"
+              name="firstname"
+              placeholder="Vorname"
+              :value="firstname"
+              @input="firstname = $event.target.value"
+            ></f7-list-input>
+            <f7-list-input
+              type="text"
+              name="lastname"
+              placeholder="Nachname"
+              :value="lastname"
+              @input="lastname = $event.target.value"
+            ></f7-list-input>
+            <f7-list-input
               type="password"
               name="password"
               placeholder="Passwort"
@@ -104,34 +133,32 @@
               @input="password = $event.target.value"
             ></f7-list-input>
             <f7-list-input
-              type="password2"
+              type="password"
               name="password2"
               placeholder="Passwort wiederholen"
               :value="password2"
               @input="password2 = $event.target.value"
             ></f7-list-input>
             <f7-list-input
-              type="text"
-              name="info1"
-              placeholder="Info1"
-              :value="info1"
-              @input="info1 = $event.target.value"
+              type="number"
+              name="phonenumber"
+              placeholder="Handynummer"
+              :value="phonenumber"
+              @input="phonenumber = $event.target.value"
             ></f7-list-input>
           </f7-list>
           <f7-list>
-            <f7-list-button
-              title="Registrieren"
-              @click="alertRegisterData"
-            ></f7-list-button>
+            <f7-button @click="alertRegisterData" raised fill>
+              Registrieren</f7-button
+            >
             <f7-block-footer>
-              Das ist ein Beispieltext!<br />Klicke auf "Registrieren" um den Screen zu schließen.
+              Das ist ein Beispieltext!<br />Klicke auf "Registrieren" um den
+              Screen zu schließen.
             </f7-block-footer>
           </f7-list>
         </f7-page>
       </f7-view>
     </f7-login-screen>
-
-
   </f7-app>
 </template>
 <script>
@@ -142,7 +169,7 @@ export default {
     return {
       // Framework7 Parameters
       f7params: {
-        name: "handshake2.0", // App name
+        name: "Handshake 2.0", // App name
         theme: "auto", // Automatic theme detection
 
         // App routes
@@ -154,9 +181,11 @@ export default {
       },
       // Login/Register screen data
       username: "",
+      firstname: "",
+      lastname: "",
       password: "",
       password2: "",
-      info1: "",
+      phonenumber: "",
     };
   },
   methods: {
@@ -168,10 +197,17 @@ export default {
         }
       );
     },
-    
+
     alertRegisterData() {
       this.$f7.dialog.alert(
-        "Nutzername: " + this.username + "<br>Passwort: " + this.password + "<br>Info1: " + this.info1,
+        "Nutzername: " +
+          this.username +
+          "<br>Vorname: " +
+          this.firstname +
+          "<br>Nachname: " +
+          this.lastname +
+          "<br>Handynummer: " +
+          this.phonenumber,
         () => {
           this.$f7.loginScreen.close();
         }

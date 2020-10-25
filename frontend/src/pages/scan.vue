@@ -57,12 +57,28 @@ export default {
 
       if (code) {
         console.log("Found QR code", code);
-        alert(code.data);
+        // alert(code.data);
+        this.processQrCode(code.data);
       } else {
         console.log("nichts gefunden");
         setTimeout(this.getFrame, 100);
       }
     },
+    processQrCode: function(content){
+      // https://hs.united.help/u/123
+      try{
+        var url = new URL(content);
+        if(url.hostname == 'hs.united.help'){
+          if(url.pathname.substring(0, 3) == '/u/'){
+            var userId = url.pathname.substring(3);
+            this.$f7router.navigate('/host/' + userId);
+          }
+        }
+        
+      } catch(err){
+        console.log(err);
+      }
+    }
   },
 };
 </script>
