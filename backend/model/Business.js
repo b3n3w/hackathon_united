@@ -47,7 +47,8 @@ const BusinessSchema = new mongoose.Schema({
 let businesses = mongoose.model('businesses', BusinessSchema);
 let randomObject = dummy(businesses, {
     ignore: ignoredFields,
-    returnDate: true
+    autoDetect: true,
+    returnDate: false
 })
 
 console.log(randomObject);
