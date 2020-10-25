@@ -1,29 +1,31 @@
-const path = require('path');
-const Visit = require('../model/Visit.js');
 
-// get visit insformation by visit id
-exports.getVisitParams = async function (req, res) {
-    Visit.findOne({
-            '_id': req.params.id
-        }).select().exec().then(visit => {
-            if (!visit) {
-                res.status(200).json({
-                    success: true,
-                    message: 'Sorry, no visit with this id found.',
-                    visit: {}
-                });
-            } else {
-                res.status(200).json({
-                    success: true,
-                    visit: visit
-                });
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                success: false,
-                message: 'Error while fetching the visit from the database.'
+exports.visitBusiness = async function (req, res) {
+
+    Business.findOne({
+        '_id': req.body._BusinessId
+    }).select().exec().then(business => {
+        if (!business) {
+            res.status(200).json({
+                success: true,
+                message: 'Sorry, no Business with this id found.',
+                business: {}
             });
-        });
-};
+        } else {
+
+            Visit.create({
+                matchID: req.body._userID,
+                timeStamp: Date.now()
+            },
+                function (err, newVisit) {
+                    if (err) {
+
+                    } else {
+                        business.visits = business.visits || [];
+                        business.visits.push(newVisit._id);
+                        business.save();
+                    }
+                });
+        }
+    });
+});
+
