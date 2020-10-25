@@ -1,18 +1,12 @@
 <template>
   <f7-app :params="f7params">
     <!-- Left panel with cover effect-->
-    <f7-panel left cover theme-dark>
+    <f7-panel left theme-dark>
       <f7-view>
         <f7-page>
           <f7-navbar title="Menü"></f7-navbar>
-          <f7-block>
+          <!--<f7-block>-->
             <f7-list>
-              <f7-list-item
-                link="/scan/"
-                title="QR-Code scannen"
-                view=".view-main"
-                panel-close
-              ></f7-list-item>
               <f7-list-item
                 link="/start-business/"
                 title="Business starten"
@@ -22,6 +16,12 @@
               <f7-list-item
                 link="/start-private/"
                 title="Private Veranstaltung starten"
+                view=".view-main"
+                panel-close
+              ></f7-list-item>
+              <f7-list-item
+                link="/scan/"
+                title="QR-Code scannen"
                 view=".view-main"
                 panel-close
               ></f7-list-item>
@@ -42,7 +42,7 @@
                 title="Registrieren"
               ></f7-list-item>
             </f7-list>
-          </f7-block>
+          <!--</f7-block>-->
         </f7-page>
       </f7-view>
     </f7-panel>
@@ -66,7 +66,7 @@
       </f7-view>
     </f7-popup>
 
-    <f7-login-screen id="my-login-screen">
+    <!-- <f7-login-screen id="my-login-screen" modal-in>
       <f7-view>
         <f7-page login-screen>
           <f7-login-screen-title>Einloggen</f7-login-screen-title>
@@ -91,7 +91,7 @@
               Einloggen
             </f7-button>
             <f7-block-footer>
-              Das ist ein Beispieltext!<br />Klicke auf "Einloggen" um den
+              Willkommen bei Handshake 2.0!<br />Klicke auf "Einloggen" um den
               Screen zu schließen.
             </f7-block-footer>
           </f7-list>
@@ -99,7 +99,7 @@
       </f7-view>
     </f7-login-screen>
 
-    <f7-login-screen id="my-register-screen">
+    <f7-login-screen id="my-register-screen" modal-in>
       <f7-view>
         <f7-page login-screen>
           <f7-login-screen-title>Registrieren</f7-login-screen-title>
@@ -152,13 +152,13 @@
               Registrieren</f7-button
             >
             <f7-block-footer>
-              Das ist ein Beispieltext!<br />Klicke auf "Registrieren" um den
-              Screen zu schließen.
+              Willkommen bei Handshake 2.0!<br />Klicke auf "Registrieren" um
+              den Screen zu schließen.
             </f7-block-footer>
           </f7-list>
         </f7-page>
       </f7-view>
-    </f7-login-screen>
+    </f7-login-screen> -->
   </f7-app>
 </template>
 <script>
@@ -215,6 +215,13 @@ export default {
     },
   },
   mounted() {
+    // this.$f7.loginScreen.open();
+
+    /*const user = null;
+    if (user == null) {
+      console.log("mounted home");
+    }*/
+
     this.$f7ready((f7) => {
       // Call F7 APIs here
     });

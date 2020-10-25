@@ -412,23 +412,23 @@ export default {
       const max = Math.round(this.max * 60);
 
       const opening = [
-        openingMonday,
-        openingTuesday,
-        openingWednesday,
-        openingThursday,
-        openingFriday,
-        openingSaturday,
-        openingSunday,
+        this.openingMonday,
+        this.openingTuesday,
+        this.openingWednesday,
+        this.openingThursday,
+        this.openingFriday,
+        this.openingSaturday,
+        this.openingSunday,
       ];
 
       const closing = [
-        closingMonday,
-        closingTuesday,
-        closingWednesday,
-        closingThursday,
-        closingFriday,
-        closingSaturday,
-        closingSunday,
+        this.closingMonday,
+        this.closingTuesday,
+        this.closingWednesday,
+        this.closingThursday,
+        this.closingFriday,
+        this.closingSaturday,
+        this.closingSunday,
       ];
 
       console.log(description);
