@@ -27,5 +27,5 @@ exports.visitBusiness = async function (req, res) {
                 });
         }
     });
-});
+};
 
