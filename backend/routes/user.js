@@ -1,4 +1,5 @@
 
+var bcrypt = require('bcryptjs');
 const path = require('path');
 const User = require('../model/User');
 
@@ -11,19 +12,85 @@ exports.getUserID = async function (req, res) {
 
 }
 
+exports.registerUser = async function (req, res) {
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(
+        req.body.password,
+        salt
+    );
+    try {
+        let user = await User.findOne({
+            username: req.body.username
+        });
+        if (user) {
+            return res.status(400).json({
+                msg: "User Already Exists"
+            });
+        }
+        user = new User({
+            username: req.body.username,
+            password: hashedPassword,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            role: req.body.role,
+            phonenumber: req.body.phone,
+            businesses: {},
+            connectedMatches: {}
+        });;
+
+        await user.save();
+
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send("Error in Saving UserData");
+    }
+}
+
+
+exports.loginUser = async function (req, res) {
+    try {
+        let user = await User.findOne({
+            username
+        });
+        if (!user)
+            return res.status(400).json({
+                message: "User Not Exist"
+            });
+
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch)
+            return res.status(400).json({
+                message: "Incorrect Password !"
+            });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({
+            message: "Server Error"
+        });
+    }
+}
+
 exports.createGuestUser = async function (req, res) {
 
     if (req.params.phone != null && User.findOne({ 'phone': req.params.phone })) {
         //Guest User mit dieser Rufnummer gefunden -> Möchte User Registrierung abschließen
     } else {
-        const currUser = User.create({
-            firstname: req.params.firstname,
-            lastname: req.params.lastname,
-            phone: req.params.phone,
-            role: "GUEST",
-            qrCode: "Testblas"
+        try {
+            const currUser = new User({
+                firstname: req.params.firstname,
+                lastname: req.params.lastname,
+                phone: req.params.phone,
+                role: "GUEST",
+                qrCode: "Testblas"
+            })
+            await currUser.save();
+
+        } catch (err) {
+            console.log(err.message);
+            res.status(500).send("Error in Saving UserData");
         }
-        )
     }
     return currUser._id;
 }
