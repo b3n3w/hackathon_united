@@ -15,9 +15,9 @@ RUN cp -R node_modules prod_node_modules
 RUN npm install
 
 # ---- Test ----
-FROM dependencies AS test
-COPY . .
-RUN  npm run lint && npm run setup && npm run test
+#FROM dependencies AS test
+#COPY . .
+#RUN  npm run lint && npm run setup && npm run test
 
 
 # ---- Release ----
@@ -29,4 +29,4 @@ COPY . .
 # expose port and define CMD
 EXPOSE 9000
 # Entrypoint: start backend
-CMD npm start
+CMD ["npm","start"]
