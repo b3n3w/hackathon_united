@@ -7,10 +7,6 @@ const VisitSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     },
-    timeStamp: {
-        type: Date,
-        default: Date.now
-    },
     createdAt: {
         type: Date,
         expires: '11814400s',

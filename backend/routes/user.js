@@ -60,10 +60,31 @@ exports.loginUser = async function (req, res) {
 
         const isMatch = await bcrypt.compare(password, user.password);
 
-        if (!isMatch)
+        if (!isMatch) {
             return res.status(400).json({
                 message: "Incorrect Password !"
             });
+        } else {
+            req.session.key = req.body.username;
+            res.end('done');
+        }
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({
+            message: "Server Error"
+        });
+    }
+}
+
+exports.logoutUser = async function (req, res){
+    try {
+        req.session.destroy(function(err){
+            if(err){
+                console.log(err);
+            } else {
+                res.redirect('/');
+            }
+        });
     } catch (e) {
         console.error(e);
         res.status(500).json({
@@ -94,6 +115,8 @@ exports.createGuestUser = async function (req, res) {
     }
     return currUser._id;
 }
+
+
 
 // get user information by user id
 exports.getUserParams = async function (req, res) {

@@ -5,7 +5,10 @@ var userRouter = require('./user');
 var businessRouter = require('./business');
 var visitRouter = require('./visit');
 var bodyParser = require('body-parser')
+
 // create application/json parser
+
+
 var jsonParser = bodyParser.json()
 
 router.use(express.json())

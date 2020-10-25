@@ -1,8 +1,12 @@
 var mongoose = require('mongoose')
 //const dummy = require('mongoose-dummy');
-const ignoredFields = ['_id','created_at', '__v', /detail.*_info/];
+const ignoredFields = ['_id', 'created_at', '__v', /detail.*_info/];
 
 const BusinessSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
     infoURLs:
         [
             {

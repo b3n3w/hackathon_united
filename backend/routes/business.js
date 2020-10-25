@@ -111,6 +111,50 @@ exports.visitBusiness = async function (req, res) {
     });
 };
 
+
+exports.getCurrentVisits = async function (req, res) {
+    Business.findOne({
+        '_id': req.params.id
+    }).select().exec().then(business => {
+        if (!business) {
+            res.status(200).json({
+                success: true,
+                message: 'Sorry, no business with this id found.',
+                business: {}
+            });
+        } else {
+            business.find({
+                'visitors.matchID': matchID
+            }, 'visitors'
+                , function (err, docs) {
+                    if (err || !docs) {
+                        console.log("No Visits in Timeintervall found");
+                    } else {
+                        res.send(docs);
+                    };
+                })
+        }
+    });
+}
+
+exports.getVisitsinIntervall = async function (req, res) {
+
+    let from = req.body.fromTime;
+    let to = req.body.toTime;
+
+    let allVisits = Business.find({
+        "visits.createdAt:": { $gt: from },
+        "visits.createdAt:": { $lt: to }
+    }, function (err, docs) {
+        if (err || !docs) {
+            console.log("No Visits in Timeintervall found");
+        } else {
+            return docs;
+        };
+    })
+}
+
+
 /*
  
 [
