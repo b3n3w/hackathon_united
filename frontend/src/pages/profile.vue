@@ -5,7 +5,10 @@
     <f7-block-title>Informationen</f7-block-title>
     <f7-block strong inset>
       <p>User-Id: {{ id }}</p>
-      <p>QR-Code Adresse: {{ this.options.data }}</p>
+      <p>Nutzername: N/A</p>
+      <p>Vorname: N/A</p>
+      <p>Nachname: N/A</p>
+      <p>Handynummer: N/A</p>
     </f7-block>
 
     <f7-block-title>QR-Code</f7-block-title>
