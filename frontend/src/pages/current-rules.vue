@@ -1,10 +1,9 @@
 <template>
   <f7-page name="current-rules">
-    <f7-navbar title="Momentane Regelungen" back-link="Back"></f7-navbar>
+    <f7-navbar title="Momentane Regelungen" back-link="Zurück"></f7-navbar>
 
     <f7-block-title large>Landkreis Fulda</f7-block-title>
     <f7-block-title medium>Stand: 23.10.2020</f7-block-title>
-    <f7-button @click="update" fill>Aktualisieren</f7-button>
     <f7-block-title>Inzidenzwert</f7-block-title>
     <f7-block strong class="text-align-center">
       <f7-gauge
@@ -44,6 +43,10 @@
           ></f7-gauge>
         </f7-col>
       </f7-row>
+    </f7-block>
+
+    <f7-block strong inset>
+    <f7-button @click="update" fill>Stand aktualisieren</f7-button>
     </f7-block>
 
     <f7-block-title>Beschreibung</f7-block-title>

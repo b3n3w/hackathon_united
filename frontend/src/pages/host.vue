@@ -1,9 +1,6 @@
 <template>
   <f7-page name="host">
-    <img
-      class="hs-img hs-hero"
-      :src="hero"
-    />
+    <img class="hs-img hs-hero" :src="hero" />
     <f7-navbar title="Profil" back-link="Zurück"></f7-navbar>
     <f7-block>
       <f7-block-title large>{{ name }}</f7-block-title>
@@ -39,11 +36,13 @@
             </div>
           </div>
         </div>
-        <f7-button large fill color="red" @click="checkOut"
-          >Auschecken</f7-button
-        >
+        <f7-button large fill color="red" @click="checkOut">{{
+          leaveText
+        }}</f7-button>
       </div>
-      <f7-button v-else fill large @click="checkIn">Einchecken</f7-button>
+      <f7-button v-else fill large @click="checkIn">{{
+        checkInText
+      }}</f7-button>
       <div class="hs-fineprint">
         Durch Klicken des Buttons erkläre ich mich einverstanden mit der
         Übertragung der Daten an den oben genannten Anbieter.
@@ -61,6 +60,60 @@
           {{ action.name }}
         </f7-list-item>
       </f7-list>
+
+      <template v-if="mode != 'vk' && mode != 'gewerbe'">
+      <f7-block-title>
+        <f7-icon
+          ios="f7:music_note_2"
+          aurora="f7:music_note_2"
+          md="material:music_note"
+        ></f7-icon>
+        Spotify</f7-block-title
+      >
+      <f7-block-title class="display-flex justify-content-space-between"
+        >Queen <span>Bohemian Rhapsody</span></f7-block-title
+      >
+      <f7-list simple-list>
+        <f7-list-item>
+          <f7-list-item-cell class="width-auto flex-shrink-0">
+            <f7-icon
+              ios="f7:shuffle"
+              aurora="f7:shuffle"
+              md="material:shuffle"
+            ></f7-icon>
+          </f7-list-item-cell>
+          <f7-list-item-cell class="width-auto flex-shrink-0">
+            <f7-icon
+              ios="f7:backward_fill"
+              aurora="f7:backward_fill"
+              md="material:fast_rewind"
+            ></f7-icon>
+          </f7-list-item-cell>
+          <f7-list-item-cell class="width-auto flex-shrink-3">
+            <f7-icon
+              ios="f7:play_fill"
+              aurora="f7:play_fill"
+              md="material:play_arrow"
+            ></f7-icon>
+          </f7-list-item-cell>
+          <f7-list-item-cell class="width-auto flex-shrink-0">
+            <f7-icon
+              ios="f7:forward_fill"
+              aurora="f7:forward_fill"
+              md="material:fast_forward"
+            ></f7-icon>
+          </f7-list-item-cell>
+          <f7-list-item-cell class="width-auto flex-shrink-0">
+            <f7-icon
+              ios="f7:repeat"
+              aurora="f7:repeat"
+              md="material:repeat"
+            ></f7-icon>
+          </f7-list-item-cell>
+        </f7-list-item>
+      </f7-list>
+      </template>
+
       <f7-block-title>{{ aboutText }}</f7-block-title>
       <f7-block strong>
         {{ desc }}
@@ -68,7 +121,7 @@
       <f7-block-title>Impressionen</f7-block-title>
       <f7-row no-gap>
         <f7-col v-for="(imp, index) in impressions" :key="index">
-          <img class="hs-img" :src="imp">
+          <img class="hs-img" :src="imp" />
         </f7-col>
       </f7-row>
       <template v-if="mode == 'gewerbe'">
@@ -96,10 +149,7 @@
     </template>
     <transition slot="fixed" name="scroll">
       <div v-if="showCheckedIn" class="hs-popup color-green">
-        <img
-          class="hs-img hs-hero"
-          :src="hero"
-        />
+        <img class="hs-img hs-hero" :src="hero" />
         <div class="hs-popup-inner">
           <i class="f7-icons hs-checkmark">checkmark</i>
           <p>
@@ -138,27 +188,39 @@ export default {
     };
   },
   computed: {
-    name: function(){
-      if(this.mode == 'gewerbe') return 'Gasthof zum Hackathon';
-      else if (this.mode == 'vk') return 'Herr Mustermann';
-      return 'Patricia';
+    name: function () {
+      if (this.mode == "gewerbe") return "Gasthof zum Hackathon";
+      else if (this.mode == "vk") return "Herr Mustermann";
+      return "Patricia";
     },
-    desc: function(){
-      if(this.mode == 'gewerbe') return 'Hier werden nicht nur Hack-Freunde und Fleisch-Aficionados glücklich - im Gasthof zum Hackathon ist für jeden etwas dabei. Wir haben 25 Stunden am Tag für Sie geöffnet.';
-      else if (this.mode == 'vk') return 'Ich stehe Ihnen gerne für Fragen zur Verfügung. Kontaktieren Sie mich einfach, ich freue mich!'
-      return 'Hacken. Zocken. Mag Katzen.'
+    desc: function () {
+      if (this.mode == "gewerbe")
+        return "Hier werden nicht nur Hack-Freunde und Fleisch-Aficionados glücklich - im Gasthof zum Hackathon ist für jeden etwas dabei. Wir haben 25 Stunden am Tag für Sie geöffnet.";
+      else if (this.mode == "vk")
+        return "Ich stehe Ihnen gerne für Fragen zur Verfügung. Kontaktieren Sie mich einfach, ich freue mich!";
+      return "Hacken. Zocken. Mag Katzen.";
     },
-    hero: function(){
-      if (this.mode == 'gewerbe') return 'https://84.167.159.137/restaurant_vienna_1280.jpg';
-      else if (this.mode == 'vk') return 'https://84.167.159.137/maxmustermann.jpg';
-      return 'https://84.167.159.137/patriciakoch.jpg';
+    hero: function () {
+      if (this.mode == "gewerbe")
+        return "https://handshake2.ddns.net/restaurant_vienna_1280.jpg";
+      else if (this.mode == "vk")
+        return "https://handshake2.ddns.net/maxmustermann.jpg";
+      return "https://handshake2.ddns.net/patriciakoch.jpg";
     },
     checkedInText: function () {
       return "Eingecheckt um " + this.checkInTime.toLocaleTimeString();
     },
-    aboutText: function(){
-      if(this.mode == 'gewerbe') return 'Über uns';
-      return 'Über mich';
+    aboutText: function () {
+      if (this.mode == "gewerbe") return "Über uns";
+      return "Über mich";
+    },
+    checkInText: function () {
+      if (this.mode == "gewerbe") return "Kontaktdaten hinterlegen";
+      return "Hand schütteln";
+    },
+    leaveText: function () {
+      if (this.mode == "gewerbe") return "Verlassen";
+      return "Verabschieden";
     },
     mode: function () {
       if (this.$f7route.query.hasOwnProperty("mode"))
@@ -188,35 +250,43 @@ export default {
           },
           {
             icon: "pencil",
-            link: '#',
-            name: 'Geschäftliche E-Mail senden'
+            link: "#",
+            name: "Geschäftliche E-Mail senden",
           },
           {
             icon: "phone",
-            link: '#',
-            name: 'Telefonisch Kontakt aufnehmen'
-          }
+            link: "#",
+            name: "Telefonisch Kontakt aufnehmen",
+          },
         ];
-      } else if (this.mode == 'freunde'){
+      } else {
         return [
           {
             icon: "logo_instagram",
             link: "#",
-            name: "Instagram"
+            name: "Instagram",
           },
           {
             icon: "logo_twitter",
             link: "#",
-            name: "Twitter"
-          }
-        ]
+            name: "Twitter",
+          },
+        ];
       }
     },
-    impressions: function(){
-      if(this.mode == 'gewerbe') return ['https://84.167.159.137/pizza_1280.jpg', 'https://84.167.159.137/sushi_1280.jpg'];
-      else if (this.mode == 'vk') return ['https://84.167.159.137/kukorobot.jpg', 'https://84.167.159.137/factory.jpg'];
-      return ['https://media.giphy.com/media/ZdlN56usaKaQg/giphy.gif'];
-    }
+    impressions: function () {
+      if (this.mode == "gewerbe")
+        return [
+          "https://handshake2.ddns.net/pizza_1280.jpg",
+          "https://handshake2.ddns.net/sushi_1280.jpg",
+        ];
+      else if (this.mode == "vk")
+        return [
+          "https://handshake2.ddns.net/kukorobot.jpg",
+          "https://handshake2.ddns.net/factory.jpg",
+        ];
+      return ["https://media.giphy.com/media/ZdlN56usaKaQg/giphy.gif"];
+    },
   },
   mounted: function () {
     this.loadHost();
@@ -227,11 +297,11 @@ export default {
       console.log(this.id);
     },
     checkIn: function () {
-      try{
-        window.navigator.vibrate([100,30,100,30,100,200,200,30,200,30,200,200,100,30,100,30,100]);
-      } catch(err){
+      try {
+        window.navigator.vibrate([100, 30, 200]);
+      } catch (err) {
         console.log(err);
-      };
+      }
 
       if (!this.checkedIn) {
         if (this.mode == "gewerbe") this.showCheckedIn = true;
@@ -267,7 +337,7 @@ export default {
 .hs-popup-inner {
   padding: 20px;
 }
-.hs-popup-text{
+.hs-popup-text {
   font-size: 16px;
   display: block;
 }
@@ -291,7 +361,7 @@ export default {
 .hs-img {
   width: 100%;
 }
-.hs-hero{
+.hs-hero {
   max-height: 400px;
   object-fit: cover;
 }

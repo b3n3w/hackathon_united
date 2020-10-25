@@ -1,6 +1,6 @@
 <template>
   <f7-page name="current-hosting">
-    <f7-navbar title="Meine Veranstaltung" back-link="Back"></f7-navbar>
+    <f7-navbar title="Meine Veranstaltung" back-link="Zurück"></f7-navbar>
 
     <f7-block-title large>Geburtstagsfeier</f7-block-title>
     <f7-block-title>Gäste</f7-block-title>
