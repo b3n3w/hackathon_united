@@ -63,8 +63,6 @@ exports.updateBusiness = async function (req, res) {
 }
 
 
-
-
 exports.visitBusiness = async function (req, res) {
     Business.findOne({
         '_id': req.body._BusinessId

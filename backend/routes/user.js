@@ -7,9 +7,7 @@ const User = require('../model/User');
 
 
 exports.getUserID = async function (req, res) {
-
     return userID;
-
 }
 
 exports.registerUser = async function (req, res) {
@@ -19,6 +17,7 @@ exports.registerUser = async function (req, res) {
         req.body.password,
         salt
     );
+    console.log(hashedPassword);
     try {
         let user = await User.findOne({
             username: req.body.username
@@ -76,10 +75,10 @@ exports.loginUser = async function (req, res) {
     }
 }
 
-exports.logoutUser = async function (req, res){
+exports.logoutUser = async function (req, res) {
     try {
-        req.session.destroy(function(err){
-            if(err){
+        req.session.destroy(function (err) {
+            if (err) {
                 console.log(err);
             } else {
                 res.redirect('/');
