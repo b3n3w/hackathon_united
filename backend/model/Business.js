@@ -24,29 +24,14 @@ const PropertySchema = new mongoose.Schema({
     email: {
         type: String
     },
-    openingTimes: {
-        mon: {
-            type: TimeRanges
-        },
-        tue: {
-            type: TimeRanges
-        },
-        wed: {
-            type: TimeRanges
-        },
-        thu: {
-            type: TimeRanges
-        },
-        fri: {
-            type: TimeRanges
-        },
-        sat: {
-            type: TimeRanges
-        },
-        sun: {
-            type: TimeRanges
-        }
-    },
+    opening_hours: [{
+        day: { type: Date }, //mon - sun
+        periods: [{
+            start: { type: Date },
+            end: { type: Date }
+        }]
+    }],
+
     visits:
         [{
             visit: {
