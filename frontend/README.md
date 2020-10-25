@@ -76,3 +76,8 @@ framework7 assets --ui
 
 Love Framework7? Support project by donating or pledging on patreon:
 https://patreon.com/vladimirkharlampidi
+
+## Launch via docker
+```
+docker run -v C:\Services\nginx-1.17.8\nginx-1.17.8\html:/usr/share/nginx/html --name="frontend"
+```
