@@ -6,32 +6,32 @@
         <f7-page>
           <f7-navbar title="Menü"></f7-navbar>
           <!--<f7-block>-->
-            <f7-list>
-              <f7-list-item
-                link="/start-business/"
-                title="Business starten"
-                view=".view-main"
-                panel-close
-              ></f7-list-item>
-              <f7-list-item
-                link="/start-private/"
-                title="Private Veranstaltung starten"
-                view=".view-main"
-                panel-close
-              ></f7-list-item>
-              <f7-list-item
-                link="/scan/"
-                title="QR-Code scannen"
-                view=".view-main"
-                panel-close
-              ></f7-list-item>
-              <f7-list-item
-                link="/profile/xxx"
-                title="Mein Profil"
-                view=".view-main"
-                panel-close
-              ></f7-list-item>
-              <f7-list-item
+          <f7-list>
+            <f7-list-item
+              link="/start-business/"
+              title="Business starten"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <f7-list-item
+              link="/start-private/"
+              title="Private Veranstaltung starten"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <f7-list-item
+              link="/scan/"
+              title="QR-Code scannen"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <f7-list-item
+              link="/profile/xxx"
+              title="Mein Profil"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <!-- <f7-list-item
                 link="#my-login-screen"
                 login-screen-open="#my-login-screen"
                 title="Einloggen"
@@ -40,8 +40,8 @@
                 link="#my-register-screen"
                 login-screen-open="#my-register-screen"
                 title="Registrieren"
-              ></f7-list-item>
-            </f7-list>
+              ></f7-list-item> -->
+          </f7-list>
           <!--</f7-block>-->
         </f7-page>
       </f7-view>
@@ -171,7 +171,9 @@ export default {
       f7params: {
         name: "Handshake 2.0", // App name
         theme: "auto", // Automatic theme detection
-
+        view: {
+          pushState: true,
+        },
         // App routes
         routes: routes,
         // Register service worker
@@ -216,6 +218,8 @@ export default {
   },
   mounted() {
     // this.$f7.loginScreen.open();
+    console.log("app mounted");
+    this.$f7.views.main.router.navigate('/login/', { reloadCurrent: true });
 
     /*const user = null;
     if (user == null) {

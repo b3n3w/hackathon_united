@@ -6,6 +6,7 @@ import DynamicRoutePage from '../pages/dynamic-route.vue';
 import NotFoundPage from '../pages/404.vue';
 
 import LoginPage from '../pages/login.vue';
+import RegisterPage from '../pages/register.vue';
 
 import HostPage from '../pages/host.vue';
 import ScanPage from '../pages/scan.vue';
@@ -26,6 +27,10 @@ var routes = [
   {
     path: '/login',
     component: LoginPage
+  },
+  {
+    path: '/register',
+    component: RegisterPage
   },
   {
     path: '/host/:id',
