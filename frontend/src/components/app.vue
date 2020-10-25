@@ -26,8 +26,38 @@
               panel-close
             ></f7-list-item>
             <f7-list-item
-              link="/profile/xxx"
+              link="/profile/123"
               title="Mein Profil"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <f7-list-item
+              link="/current-hosting/"
+              title="Meine Veranstaltung"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <f7-list-item
+              link="/upcoming-hosting/"
+              title="Meine bevorstehenden Veranstaltungen"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <f7-list-item
+              link="/current-rules/"
+              title="Momentane Regelungen"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <f7-list-item
+              link="/login/"
+              title="Einloggen"
+              view=".view-main"
+              panel-close
+            ></f7-list-item>
+            <f7-list-item
+              link="/register/"
+              title="Registrieren"
               view=".view-main"
               panel-close
             ></f7-list-item>
@@ -217,15 +247,6 @@ export default {
     },
   },
   mounted() {
-    // this.$f7.loginScreen.open();
-    console.log("app mounted");
-    this.$f7.views.main.router.navigate('/login/', { reloadCurrent: true });
-
-    /*const user = null;
-    if (user == null) {
-      console.log("mounted home");
-    }*/
-
     this.$f7ready((f7) => {
       // Call F7 APIs here
     });

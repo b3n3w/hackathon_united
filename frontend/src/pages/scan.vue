@@ -1,6 +1,6 @@
 <template>
   <f7-page name="scan">
-    <f7-navbar title="QR-Code scannen" back-link="Back"></f7-navbar>
+    <f7-navbar title="Handshake" back-link="Back"></f7-navbar>
     <video id="video" autoplay ref="video"></video>
   </f7-page>
 </template>
@@ -16,13 +16,18 @@ export default {
           exact: "environment",
         },
       },
-      canvas: false
+      canvas: false,
+      stream: false
     };
   },
   mounted: function () {
     this.startStream();
   },
-  beforeDestroy: function () {},
+  beforeDestroy: function () {
+    this.stream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+  },
   methods: {
     startStream: function () {
       if (navigator.mediaDevices.getUserMedia) {
@@ -30,7 +35,8 @@ export default {
           .getUserMedia({ audio: false, video: true })
           .then(
             function (stream) {
-              this.$refs.video.srcObject = stream;
+              this.stream = stream;
+              this.$refs.video.srcObject = this.stream;
               this.getFrame();
             }.bind(this)
           )
@@ -71,7 +77,7 @@ export default {
         if(url.hostname == 'hs.united.help'){
           if(url.pathname.substring(0, 3) == '/u/'){
             var userId = url.pathname.substring(3);
-            this.$f7router.navigate('/host/' + userId);
+            this.$f7router.navigate('/host/' + userId + url.search);
           }
         }
         

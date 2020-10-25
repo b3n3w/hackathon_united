@@ -11,9 +11,12 @@ import RegisterPage from '../pages/register.vue';
 import HostPage from '../pages/host.vue';
 import ScanPage from '../pages/scan.vue';
 import ProfilePage from '../pages/profile.vue';
+import DatenschutzPage from '../pages/datenschutz.vue';
 
 import StartBusinessPage from '../pages/start-business.vue';
 import StartPrivatePage from '../pages/start-private.vue';
+
+import UpcomingPage from '../pages/upcoming.vue';
 
 import CurrentHostingPage from '../pages/current-hosting.vue';
 import UpcomingHostingPage from '../pages/upcoming-hosting.vue';
@@ -25,12 +28,16 @@ var routes = [
     component: HomePage,
   },
   {
-    path: '/login',
+    path: '/login/',
     component: LoginPage
   },
   {
-    path: '/register',
+    path: '/register/',
     component: RegisterPage
+  },
+  {
+    path: '/upcoming/:id',
+    component: UpcomingPage
   },
   {
     path: '/host/:id',
@@ -67,6 +74,10 @@ var routes = [
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: DynamicRoutePage,
+  },
+  {
+    path: '/datenschutz/',
+    component: DatenschutzPage
   },
   {
     path: '(.*)',

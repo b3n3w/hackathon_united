@@ -1,6 +1,9 @@
 <template>
   <f7-page name="start-private">
-    <f7-navbar title="Private Veranstaltung starten" back-link="Back"></f7-navbar>
+    <f7-navbar
+      title="Private Veranstaltung starten"
+      back-link="Back"
+    ></f7-navbar>
 
     <f7-block-title medium>Beschreibung</f7-block-title>
     <f7-block strong inset>
@@ -18,7 +21,8 @@
     <f7-block-title medium>Standard-Zeitraum</f7-block-title>
 
     <f7-block-title class="display-flex justify-content-space-between"
-      >Minimaler Zeitraum <span>{{ Math.round(min * 10) / 10 }} Stunden</span></f7-block-title
+      >Minimaler Zeitraum
+      <span>{{ Math.round(min * 10) / 10 }} Stunden</span></f7-block-title
     >
     <f7-list simple-list>
       <f7-list-item>
@@ -45,7 +49,8 @@
     </f7-list>
 
     <f7-block-title class="display-flex justify-content-space-between"
-      >Maximaler Zeitraum <span>{{ Math.round(max * 10) / 10 }} Stunden</span></f7-block-title
+      >Maximaler Zeitraum
+      <span>{{ Math.round(max * 10) / 10 }} Stunden</span></f7-block-title
     >
     <f7-list simple-list>
       <f7-list-item>
@@ -109,7 +114,8 @@ export default {
       console.log(min);
       console.log(max);
 
-      // TODO Backend
+      this.$f7router.navigate("/", { reloadCurrent: true });
+      // Backend
     },
   },
 };

@@ -4,13 +4,6 @@
     <f7-list form>
       <f7-list-input
         type="text"
-        name="username"
-        placeholder="Nutzername"
-        :value="username"
-        @input="username = $event.target.value"
-      ></f7-list-input>
-      <f7-list-input
-        type="text"
         name="firstname"
         placeholder="Vorname"
         :value="firstname"
@@ -22,6 +15,13 @@
         placeholder="Nachname"
         :value="lastname"
         @input="lastname = $event.target.value"
+      ></f7-list-input>
+      <f7-list-input
+        type="text"
+        name="username"
+        placeholder="Nutzername"
+        :value="username"
+        @input="username = $event.target.value"
       ></f7-list-input>
       <f7-list-input
         type="password"
@@ -38,6 +38,27 @@
         @input="password2 = $event.target.value"
       ></f7-list-input>
       <f7-list-input
+        type="text"
+        name="street"
+        placeholder="Straße + Haus-Nr."
+        :value="street"
+        @input="street = $event.target.value"
+      ></f7-list-input>
+      <f7-list-input
+        type="number"
+        name="postalcode"
+        placeholder="Postleitzahl"
+        :value="postalcode"
+        @input="postalcode = $event.target.value"
+      ></f7-list-input>
+      <f7-list-input
+        type="text"
+        name="city"
+        placeholder="Wohnort"
+        :value="city"
+        @input="city = $event.target.value"
+      ></f7-list-input>
+      <f7-list-input
         type="number"
         name="phonenumber"
         placeholder="Handynummer"
@@ -45,12 +66,13 @@
         @input="phonenumber = $event.target.value"
       ></f7-list-input>
     </f7-list>
-    <f7-list>
-      <f7-button @click="signIn" raised fill> Registrieren</f7-button>
+    <f7-list></f7-list>
+      <f7-button @click="signIn" raised fill>Registrieren</f7-button>
       <f7-block-footer>
-        Willkommen bei Handshake 2.0!<br />Klicke auf "Registrieren" um den
-        Screen zu schließen.
-      </f7-block-footer>
+        Durch Klicken des Buttons erkläre ich mich einverstanden mit der
+        Übertragung der Daten an den oben genannten Anbieter.
+        <a href="/datenschutz/">Datenschutzerklärung</a></f7-block-footer
+      >
     </f7-list>
   </f7-page>
 </template>
@@ -59,11 +81,14 @@
 export default {
   data() {
     return {
-      username: "",
       firstname: "",
       lastname: "",
+      username: "",
       password: "",
       password2: "",
+      street: "",
+      postalcode: "",
+      city: "",
       phonenumber: "",
     };
   },
@@ -74,12 +99,20 @@ export default {
       const router = self.$f7router;
       this.sendToBackend();
       app.dialog.alert(
-        "Nutzername: " +
-          this.username +
-          "<br>Vorname: " +
+        "Vorname: " +
           this.firstname +
           "<br>Nachname: " +
           this.lastname +
+          "<br>Nachname: " +
+          this.lastname +
+          "<br>Nutzername: " +
+          this.username +
+          "<br>Straße + Haus-Nr.: " +
+          this.street +
+          "<br>PLZ: " +
+          this.postalcode +
+          "<br>Wohnort: " +
+          this.city +
           "<br>Handynummer: " +
           this.phonenumber,
         () => {
@@ -88,7 +121,7 @@ export default {
       );
     },
     sendToBackend() {
-      const https = require("https");
+      const http = require("http");
 
       const data = JSON.stringify({
         username: this.username,
@@ -109,7 +142,7 @@ export default {
         },
       };
 
-      const req = https.request(options, (res) => {
+      const req = http.request(options, (res) => {
         console.log("statusCode: " + res.statusCode);
 
         res.on("data", (d) => {
@@ -119,6 +152,7 @@ export default {
 
       req.on("error", (error) => {
         console.error(error);
+        this.$f7router.navigate("/", { reloadCurrent: true });
       });
 
       req.write(data);

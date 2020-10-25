@@ -1,14 +1,21 @@
 <template>
   <f7-page name="profile">
-    <f7-navbar title="Profilseite" back-link="Back"></f7-navbar>
+    <f7-navbar title="Mein Profil" back-link="Back"></f7-navbar>
 
     <f7-block-title>Informationen</f7-block-title>
     <f7-block strong inset>
-      <p>User-Id: {{ id }}</p>
-      <p>Nutzername: N/A</p>
-      <p>Vorname: N/A</p>
-      <p>Nachname: N/A</p>
-      <p>Handynummer: N/A</p>
+      <f7-block-title class="display-flex justify-content-space-between"
+        ><span></span></f7-block-title>
+      <f7-block-title class="display-flex justify-content-space-between"
+        >Vorname<span>Max</span></f7-block-title>
+      <f7-block-title class="display-flex justify-content-space-between"
+        >Nachname<span>Mustermann</span></f7-block-title>
+      <f7-block-title class="display-flex justify-content-space-between"
+        >Straße + Haus-Nr.<span>Rabanusstraße 1</span></f7-block-title>
+      <f7-block-title class="display-flex justify-content-space-between"
+        >PLZ + Wohnort<span>36037 Fulda</span></f7-block-title>
+      <f7-block-title class="display-flex justify-content-space-between"
+        >Handynummer <span>0160/439205345</span></f7-block-title>
     </f7-block>
 
     <f7-block-title>QR-Code</f7-block-title>

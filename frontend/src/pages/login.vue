@@ -18,10 +18,12 @@
       ></f7-list-input>
     </f7-list>
     <f7-list>
-      <f7-list-button @click="signIn">Einloggen</f7-list-button>
-      <f7-block-footer
-        >Willkommen bei Handshake 2.0!<br />Klicke auf "Einloggen" um den Screen
-        zu schließen.</f7-block-footer
+      <f7-button @click="signIn" raised fill>Einloggen</f7-button>
+      <f7-block-footer>
+        <a href="/register/">Noch keinen Account? Hier registrieren!</a>
+        <br><br>Durch Klicken des Buttons erkläre ich mich einverstanden mit der
+        Übertragung der Daten an den oben genannten Anbieter.
+        <a href="/datenschutz/">Datenschutzerklärung</a></f7-block-footer
       >
     </f7-list>
   </f7-page>
@@ -59,7 +61,7 @@ export default {
       const options = {
         hostname: "localhost",
         port: 9000,
-        path: "/api/user/register",
+        path: "/api/user/login",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,6 +79,7 @@ export default {
 
       req.on("error", (error) => {
         console.error(error);
+        this.$f7router.navigate("/", { reloadCurrent: true });
       });
 
       req.write(data);

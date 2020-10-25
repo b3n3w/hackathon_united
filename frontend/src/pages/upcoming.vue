@@ -4,9 +4,9 @@
       class="hs-img hs-hero"
       :src="hero"
     />
-    <f7-navbar title="Profil" back-link="Zurück"></f7-navbar>
+    <f7-navbar title="Einchecken" back-link="Zurück"></f7-navbar>
     <f7-block>
-      <f7-block-title large>{{ name }}</f7-block-title>
+      <f7-block-title medium>{{ name }}</f7-block-title>
       <div v-if="!checkedIn">
         <p>
           Dokumentieren Sie Ihren Aufenthalt und helfen Sie mit, die Verfolgung
@@ -135,14 +135,10 @@ export default {
       checkedIn: false,
       checkInTime: null,
       showCheckedIn: false,
+      name: "",
     };
   },
   computed: {
-    name: function(){
-      if(this.mode == 'gewerbe') return 'Gasthof zum Hackathon';
-      else if (this.mode == 'vk') return 'Herr Mustermann';
-      return 'Patricia';
-    },
     desc: function(){
       if(this.mode == 'gewerbe') return 'Hier werden nicht nur Hack-Freunde und Fleisch-Aficionados glücklich - im Gasthof zum Hackathon ist für jeden etwas dabei. Wir haben 25 Stunden am Tag für Sie geöffnet.';
       else if (this.mode == 'vk') return 'Ich stehe Ihnen gerne für Fragen zur Verfügung. Kontaktieren Sie mich einfach, ich freue mich!'
@@ -150,8 +146,8 @@ export default {
     },
     hero: function(){
       if (this.mode == 'gewerbe') return 'https://84.167.159.137/restaurant_vienna_1280.jpg';
-      else if (this.mode == 'vk') return 'https://84.167.159.137/maxmustermann.jpg';
-      return 'https://84.167.159.137/patriciakoch.jpg';
+      else if (this.mode = 'vk') return 'https://84.167.159.137/max.webp';
+      return 'https://84.167.159.137/patricia.webp';
     },
     checkedInText: function () {
       return "Eingecheckt um " + this.checkInTime.toLocaleTimeString();
@@ -197,29 +193,21 @@ export default {
             name: 'Telefonisch Kontakt aufnehmen'
           }
         ];
-      } else if (this.mode == 'freunde'){
-        return [
-          {
-            icon: "logo_instagram",
-            link: "#",
-            name: "Instagram"
-          },
-          {
-            icon: "logo_twitter",
-            link: "#",
-            name: "Twitter"
-          }
-        ]
       }
     },
     impressions: function(){
       if(this.mode == 'gewerbe') return ['https://84.167.159.137/pizza_1280.jpg', 'https://84.167.159.137/sushi_1280.jpg'];
-      else if (this.mode == 'vk') return ['https://84.167.159.137/kukorobot.jpg', 'https://84.167.159.137/factory.jpg'];
+      else if (this.mode == 'vk') return [];
       return ['https://media.giphy.com/media/ZdlN56usaKaQg/giphy.gif'];
     }
   },
   mounted: function () {
     this.loadHost();
+    if (this.id === "123") {
+      this.name = "Barabend bei Patricia";
+    } else {
+      this.name = "Stammtisch mit Kollegen";
+    }
     console.log(this.mode);
   },
   methods: {
@@ -227,12 +215,6 @@ export default {
       console.log(this.id);
     },
     checkIn: function () {
-      try{
-        window.navigator.vibrate([100,30,100,30,100,200,200,30,200,30,200,200,100,30,100,30,100]);
-      } catch(err){
-        console.log(err);
-      };
-
       if (!this.checkedIn) {
         if (this.mode == "gewerbe") this.showCheckedIn = true;
         this.checkInTime = new Date();

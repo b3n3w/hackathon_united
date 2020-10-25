@@ -18,7 +18,8 @@
     <f7-block-title medium>Standard-Zeitraum</f7-block-title>
 
     <f7-block-title class="display-flex justify-content-space-between"
-      >Minimaler Zeitraum <span>{{ Math.round(min * 10) / 10 }} Stunden</span></f7-block-title
+      >Minimaler Zeitraum
+      <span>{{ Math.round(min * 10) / 10 }} Stunden</span></f7-block-title
     >
     <f7-list simple-list>
       <f7-list-item>
@@ -35,7 +36,7 @@
             :max="23.9"
             :step="0.1"
             :value="min"
-            :label="true"      
+            :label="true"
             :format-label="formatLabel"
             @range:change="onMinChange"
             color="orange"
@@ -47,7 +48,8 @@
     <f7-block-title></f7-block-title>
 
     <f7-block-title class="display-flex justify-content-space-between"
-      >Maximaler Zeitraum <span>{{ Math.round(max * 10) / 10 }} Stunden</span></f7-block-title
+      >Maximaler Zeitraum
+      <span>{{ Math.round(max * 10) / 10 }} Stunden</span></f7-block-title
     >
     <f7-list simple-list>
       <f7-list-item>
@@ -437,7 +439,8 @@ export default {
       console.log(opening);
       console.log(closing);
 
-      // TODO Backend
+      this.$f7router.navigate("/", { reloadCurrent: true });
+      // Backend
     },
   },
 };

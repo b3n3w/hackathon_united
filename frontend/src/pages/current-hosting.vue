@@ -1,8 +1,8 @@
 <template>
   <f7-page name="current-hosting">
-    <f7-navbar title="Momentane Veranstaltung" back-link="Back"></f7-navbar>
+    <f7-navbar title="Meine Veranstaltung" back-link="Back"></f7-navbar>
 
-    <f7-block-title large>Titel!</f7-block-title>
+    <f7-block-title large>Geburtstagsfeier</f7-block-title>
     <f7-block-title>Gäste</f7-block-title>
     <f7-block strong class="text-align-center">
       <f7-gauge
@@ -47,7 +47,7 @@
 
     <f7-block-title>Beschreibung</f7-block-title>
     <f7-card
-      content="This is a simple card with plain text, but cards can also contain their own header, footer, list view, image, or any other element."
+      content="Hey Leute, herzlich willkommen auf meiner coronakonformen Geburtstagsfeier. Fühlt euch wie zuhause und feiert mit mir in ein neues Lebensjahr hinein! :D"
     ></f7-card>
   </f7-page>
 </template>
