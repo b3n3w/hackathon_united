@@ -16,7 +16,7 @@ exports.getUserID = async function (req, res) {
 exports.getUserParams = async function (req, res) {
 
     User.findOne({
-        '_id': req.id
+        '_id': req.params.id
     }).select().exec().then(user => {
         if (!user) {
             res.status(200).json({
